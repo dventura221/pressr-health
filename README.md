@@ -13,6 +13,10 @@
 
 ### **_Screenshots_**
 
+#### ERD
+
+![alt text](https://i.imgur.com/tiA3wlF.png)
+
 ### Coming soon! 
 
 
