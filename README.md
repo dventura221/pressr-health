@@ -43,7 +43,8 @@
 
 ### **_Future Updates_**
 
-- [ ] Adding charts/graphs using https://quickchart.io/
+- [ ] Add secure authorization with https://auth0.com/
+- [ ] Adding charts/graphs using https://quickchart.io/ or https://dev.to/giteden/top-5-react-chart-libraries-for-2020-1amb
 - [ ] Symptom Checker with https://apimedic.com/signup
 
 
