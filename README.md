@@ -17,8 +17,6 @@
 
 ![alt text](https://i.imgur.com/tiA3wlF.png)
 
-### Coming soon! 
-
 
 ### **_Technologies Used_**
 
