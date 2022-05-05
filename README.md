@@ -17,6 +17,8 @@
 
 ![alt text](https://i.imgur.com/tiA3wlF.png)
 
+#### Component Hierarchy Diagram 
+![alt text](https://i.imgur.com/USUEKTE.png)
 
 ### **_Technologies Used_**
 
