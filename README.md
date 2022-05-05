@@ -22,7 +22,7 @@
 
 - CSS
 
-- Javscript
+- Javascript
 
 - Python
 
