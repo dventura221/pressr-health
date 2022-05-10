@@ -1,6 +1,5 @@
 # **_Pressr (like Pressure)_**
 
-
 ## Date 5/5/2022
 
 ### By: [Dan Ventura](https://github.com/dventura221)
@@ -19,7 +18,8 @@
 
 ![alt text](https://i.imgur.com/tiA3wlF.png)
 
-#### Component Hierarchy Diagram 
+#### Component Hierarchy Diagram
+
 ![alt text](https://i.imgur.com/USUEKTE.png)
 
 ### **_Technologies Used_**
@@ -38,7 +38,6 @@
 
 - Node
 
-
 ### **_Getting Started_**
 
 - Create your account and log in. Have your healthcare provider create a provider account to monitor your progress.
@@ -52,6 +51,5 @@
 - [ ] Add secure authorization with https://auth0.com/
 - [ ] Adding charts/graphs using https://quickchart.io/ or https://dev.to/giteden/top-5-react-chart-libraries-for-2020-1amb
 - [ ] Symptom Checker with https://apimedic.com/signup
-
 
 ### **_Credits_**
