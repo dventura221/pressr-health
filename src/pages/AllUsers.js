@@ -28,6 +28,7 @@ const AllUsers = () => {
               <h2>
                 {user.last_name}, {user.first_name}
               </h2>
+              <h3>Date of Birth: {user.dob}</h3>
             </Card>
           </Link>
         ))}

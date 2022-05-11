@@ -1,28 +1,55 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-
+import { Card, Avatar } from 'react-rainbow-components'
 const UserDetail = () => {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState([])
+  const [readings, setReadings] = useState()
 
   let { userId } = useParams()
 
   useEffect(() => {
     const getUser = async () => {
-      let res = axios.get(`http://localhost:8000/users/${userId}/`)
-      console.log(res)
-      setUser(res)
+      let res = await axios.get(`http://localhost:8000/users/${userId}`)
+      let readingres = await axios.get(`http://localhost:8000/readings/`)
+      let readingsfiltered = readingres.data.filter(
+        (reading) => reading.user_id === parseInt(`${userId}`)
+      )
+      console.log(readingsfiltered)
+      setUser(res.data)
+      setReadings(readingsfiltered)
     }
     getUser()
-  }, [])
+  }, [userId])
 
-  console.log(user)
-
-  return (
+  return user && readings ? (
     <div>
-      <h1>User Detail FILLER</h1>
+      <div>
+        <h1>Patient Details</h1>
+        <Card>
+          <Avatar src={user.photo_url} size="large" />
+          <h2>
+            {user.last_name}, {user.first_name}
+          </h2>
+          <h3>Date of Birth: {user.dob}</h3>
+        </Card>
+      </div>
+      <h3>Blood Pressure Readings:</h3>
+      {readings === [] ? (
+        <div>
+          {readings.map((reading) => (
+            <Card key={reading.id}>
+              <p>
+                {reading.systolic}/{reading.diastolic}
+              </p>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <h3>None so far...</h3>
+      )}
     </div>
-  )
+  ) : null
 }
 
 export default UserDetail
