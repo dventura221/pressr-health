@@ -1,8 +1,16 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Card, Avatar, Button, Chart, Dataset } from 'react-rainbow-components'
-import ReadingForm from '../components/ReadingForm'
+import {
+  Card,
+  Avatar,
+  Button,
+  Chart,
+  Dataset,
+  Input,
+  Accordion,
+  AccordionSection
+} from 'react-rainbow-components'
 
 const UserDetail = () => {
   let navigate = useNavigate()
@@ -19,6 +27,7 @@ const UserDetail = () => {
     systolic: '',
     diastolic: ''
   })
+  const [counter, setCounter] = useState(1000)
 
   useEffect(() => {
     const getUser = async () => {
@@ -40,7 +49,7 @@ const UserDetail = () => {
       )
     }
     getUser()
-  }, [userId])
+  }, [userId, counter])
 
   const datasets = [
     {
@@ -75,6 +84,24 @@ const UserDetail = () => {
     }
   }
 
+  const handleSubmit = async (e) => {
+    //e.preventDefault()
+    const res = await axios
+      .post(`http://localhost:8000/readings/`, bpValue)
+      .then((res) => console.log('successful'))
+      .catch((err) => console.log(err.data))
+    setBpValue({
+      user_id: userId,
+      systolic: '',
+      diastolic: ''
+    })
+    setCounter(counter + 1)
+  }
+
+  const handleChange = (e) => {
+    setBpValue({ ...bpValue, [e.target.name]: e.target.value })
+  }
+
   return user && readings ? (
     <div>
       <div>
@@ -92,7 +119,29 @@ const UserDetail = () => {
         </Card>
       </div>
       <div>
-        <ReadingForm user={user} bpValue={bpValue} setBpValue={setBpValue} />
+        <Accordion>
+          <AccordionSection label="Add new blood pressure Reading">
+            <form onSubmit={handleSubmit}>
+              <Input
+                label="Systolic"
+                placeholder="123"
+                type="number"
+                name="systolic"
+                value={setBpValue.systolic}
+                onChange={handleChange}
+              />
+              <Input
+                label="Diastolic"
+                placeholder="123"
+                type="number"
+                name="diastolic"
+                value={setBpValue.diastolic}
+                onChange={handleChange}
+              />
+              <Button onClick={handleSubmit}>Submit</Button>
+            </form>
+          </AccordionSection>
+        </Accordion>
       </div>
       <div>
         {toggle === false ? (

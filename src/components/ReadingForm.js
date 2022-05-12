@@ -1,4 +1,4 @@
-import { useState } from 'react'
+//import { useState } from 'react'
 import axios from 'axios'
 import { Input, Button } from 'react-rainbow-components'
 
@@ -10,6 +10,7 @@ const ReadingForm = (props) => {
       .then((res) => console.log('successful'))
       .catch((err) => console.log(err.data))
     props.setBpValue({
+      user_id: props.user.id,
       systolic: '',
       diastolic: ''
     })
@@ -21,7 +22,7 @@ const ReadingForm = (props) => {
 
   return (
     <div>
-      <h1>Add new blood pressure Reading</h1>
+      <h3>Add new blood pressure Reading</h3>
       <form onSubmit={handleSubmit}>
         <Input
           label="Systolic"
