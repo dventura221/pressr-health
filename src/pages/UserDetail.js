@@ -29,11 +29,6 @@ const UserDetail = () => {
     diastolic: ''
   })
   const [counter, setCounter] = useState(1000)
-  const [updateReading, setUpdateReading] = useState({
-    user_id: userId,
-    systolic: '',
-    diastolic: ''
-  })
 
   useEffect(() => {
     const getUser = async () => {
@@ -116,20 +111,6 @@ const UserDetail = () => {
     setCounter(counter + 1)
   }
 
-  const updateReadingHandleChange = async (e, id) => {
-    e.preventDefault()
-    const res = await axios
-      .put(`http://localhost:8000/readings/${id}`, updateReading)
-      .then((res) => console.log('update street successful'))
-      .catch((err) => console.log(err.data))
-    setUpdateReading({
-      user_id: userId,
-      systolic: '',
-      diastolic: ''
-    })
-    setCounter(counter + 1)
-  }
-
   return user && readings ? (
     <div>
       <div>
@@ -188,8 +169,9 @@ const UserDetail = () => {
                   to={`/readings/${reading.id}`}
                   key={reading.id}
                   state={{
-                    user: { userId }
+                    user: { user }
                   }}
+                  // https://www.daggala.com/passing-props-through-link-in-react-router/
                 >
                   <Card>
                     <h4>
