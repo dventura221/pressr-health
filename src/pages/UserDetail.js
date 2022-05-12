@@ -14,6 +14,11 @@ const UserDetail = () => {
   const [diasReadings, setDiasReadings] = useState([])
   const [labels, setLabels] = useState([])
   const [toggle, setToggle] = useState(false)
+  const [bpValue, setBpValue] = useState({
+    user_id: userId,
+    systolic: '',
+    diastolic: ''
+  })
 
   useEffect(() => {
     const getUser = async () => {
@@ -22,7 +27,6 @@ const UserDetail = () => {
       let readingsfiltered = readingres.data.filter(
         (reading) => reading.user_id === parseInt(`${userId}`)
       )
-      //console.log(readingsfiltered)
       setUser(res.data)
       setReadings(readingsfiltered)
       setSysReadings(
@@ -37,11 +41,6 @@ const UserDetail = () => {
     }
     getUser()
   }, [userId])
-
-  // console.log('Readings', readings)
-  // console.log('Sys', sysReadings)
-  // console.log('Dias', diasReadings)
-  // console.log('Dates', labels)
 
   const datasets = [
     {
@@ -93,7 +92,7 @@ const UserDetail = () => {
         </Card>
       </div>
       <div>
-        <ReadingForm user={user} />
+        <ReadingForm user={user} bpValue={bpValue} setBpValue={setBpValue} />
       </div>
       <div>
         {toggle === false ? (
