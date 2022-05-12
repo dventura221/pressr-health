@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import {
   Card,
   Avatar,
@@ -11,6 +11,7 @@ import {
   Accordion,
   AccordionSection
 } from 'react-rainbow-components'
+import 'boxicons'
 
 const UserDetail = () => {
   let navigate = useNavigate()
@@ -28,6 +29,11 @@ const UserDetail = () => {
     diastolic: ''
   })
   const [counter, setCounter] = useState(1000)
+  const [updateReading, setUpdateReading] = useState({
+    user_id: userId,
+    systolic: '',
+    diastolic: ''
+  })
 
   useEffect(() => {
     const getUser = async () => {
@@ -110,6 +116,20 @@ const UserDetail = () => {
     setCounter(counter + 1)
   }
 
+  const updateReadingHandleChange = async (e, id) => {
+    e.preventDefault()
+    const res = await axios
+      .put(`http://localhost:8000/readings/${id}`, updateReading)
+      .then((res) => console.log('update street successful'))
+      .catch((err) => console.log(err.data))
+    setUpdateReading({
+      user_id: userId,
+      systolic: '',
+      diastolic: ''
+    })
+    setCounter(counter + 1)
+  }
+
   return user && readings ? (
     <div>
       <div>
@@ -164,15 +184,17 @@ const UserDetail = () => {
           {readings ? (
             <div>
               {readings.map((reading) => (
-                <Card key={reading.id}>
-                  <p>
-                    {reading.systolic}/{reading.diastolic}
-                  </p>
-                  <p>{reading.created_at}</p>
-                  <Button onClick={() => deleteReadingHandler(reading.id)}>
-                    Delete
-                  </Button>
-                </Card>
+                <Link to={`/readings/${reading.id}`} key={reading.id}>
+                  <Card>
+                    <h4>
+                      {reading.systolic}/{reading.diastolic}
+                    </h4>
+                    <p>{reading.created_at}</p>
+                    <Button onClick={() => deleteReadingHandler(reading.id)}>
+                      <box-icon name="x" color="#fb0000"></box-icon>
+                    </Button>
+                  </Card>
+                </Link>
               ))}
             </div>
           ) : (
