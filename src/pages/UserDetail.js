@@ -1,14 +1,18 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Card, Avatar, Button } from 'react-rainbow-components'
+import { Card, Avatar, Button, Chart, Dataset } from 'react-rainbow-components'
 
 const UserDetail = () => {
   let navigate = useNavigate()
-  const [user, setUser] = useState([])
-  const [readings, setReadings] = useState()
-
   let { userId } = useParams()
+
+  const [user, setUser] = useState([])
+  const [readings, setReadings] = useState([])
+  const [sysReadings, setSysReadings] = useState([])
+  const [diasReadings, setDiasReadings] = useState([])
+  const [labels, setLabels] = useState([])
+  const [toggle, setToggle] = useState(false)
 
   useEffect(() => {
     const getUser = async () => {
@@ -17,12 +21,59 @@ const UserDetail = () => {
       let readingsfiltered = readingres.data.filter(
         (reading) => reading.user_id === parseInt(`${userId}`)
       )
-      console.log(readingsfiltered)
+      //console.log(readingsfiltered)
       setUser(res.data)
       setReadings(readingsfiltered)
+      setSysReadings(
+        readingsfiltered.map((sys_reading) => sys_reading.systolic)
+      )
+      setDiasReadings(
+        readingsfiltered.map((dias_reading) => dias_reading.diastolic)
+      )
+      setLabels(
+        readingsfiltered.map((reading_dates) => reading_dates.created_at)
+      )
     }
     getUser()
   }, [userId])
+
+  // console.log('Readings', readings)
+  // console.log('Sys', sysReadings)
+  // console.log('Dias', diasReadings)
+  // console.log('Dates', labels)
+
+  const datasets = [
+    {
+      title: 'Systolic',
+      borderColor: '#fe4849',
+      values: sysReadings
+    },
+    {
+      title: 'Diastolic',
+      borderColor: '#01b6f5',
+      values: diasReadings
+    }
+  ]
+
+  const renderDatasets = () => {
+    return datasets.map(({ title, values, borderColor }) => (
+      <Dataset
+        key={title}
+        title={title}
+        values={values}
+        borderColor={borderColor}
+        backgroundColor={borderColor}
+      />
+    ))
+  }
+
+  const changeToggle = () => {
+    if (toggle === true) {
+      setToggle(false)
+    } else {
+      setToggle(true)
+    }
+  }
 
   return user && readings ? (
     <div>
@@ -40,21 +91,39 @@ const UserDetail = () => {
           <h3>Date of Birth: {user.dob}</h3>
         </Card>
       </div>
-      <h3>Blood Pressure Readings:</h3>
-      {readings ? (
+      <div>
+        {toggle === false ? (
+          <Button onClick={changeToggle}>See Graph</Button>
+        ) : (
+          <Button onClick={changeToggle}>See Readings</Button>
+        )}
+      </div>
+      {toggle === false ? (
         <div>
-          {readings.map((reading) => (
-            <Card key={reading.id}>
-              <p>
-                {reading.systolic}/{reading.diastolic}
-              </p>
-              <p>{reading.created_at}</p>
-            </Card>
-          ))}
+          <h3>Blood Pressure Readings:</h3>
+          {readings ? (
+            <div>
+              {readings.map((reading) => (
+                <Card key={reading.id}>
+                  <p>
+                    {reading.systolic}/{reading.diastolic}
+                  </p>
+                  <p>{reading.created_at}</p>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <h3>None so far...</h3>
+          )}
         </div>
-      ) : (
-        <h3>None so far...</h3>
-      )}
+      ) : null}
+      {toggle === true ? (
+        <div>
+          <Chart labels={labels} type="line" showLegend={true}>
+            {renderDatasets()}
+          </Chart>
+        </div>
+      ) : null}
     </div>
   ) : null
 }
