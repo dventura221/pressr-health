@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Card, Avatar, Button, Chart, Dataset } from 'react-rainbow-components'
+import ReadingForm from '../components/ReadingForm'
 
 const UserDetail = () => {
   let navigate = useNavigate()
@@ -90,6 +91,9 @@ const UserDetail = () => {
           </h2>
           <h3>Date of Birth: {user.dob}</h3>
         </Card>
+      </div>
+      <div>
+        <ReadingForm user={user} />
       </div>
       <div>
         {toggle === false ? (
