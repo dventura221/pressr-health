@@ -102,6 +102,14 @@ const UserDetail = () => {
     setBpValue({ ...bpValue, [e.target.name]: e.target.value })
   }
 
+  const deleteReadingHandler = async (id) => {
+    const res = await axios
+      .delete(`http://localhost:8000/readings/${id}`)
+      .then((res) => console.log('delete street successful'))
+      .catch((err) => console.log(err.data))
+    setCounter(counter + 1)
+  }
+
   return user && readings ? (
     <div>
       <div>
@@ -161,6 +169,9 @@ const UserDetail = () => {
                     {reading.systolic}/{reading.diastolic}
                   </p>
                   <p>{reading.created_at}</p>
+                  <Button onClick={() => deleteReadingHandler(reading.id)}>
+                    Delete
+                  </Button>
                 </Card>
               ))}
             </div>
