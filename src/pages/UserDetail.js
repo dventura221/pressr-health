@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { Card, Avatar } from 'react-rainbow-components'
+import { useParams, useNavigate } from 'react-router-dom'
+import { Card, Avatar, Button } from 'react-rainbow-components'
+
 const UserDetail = () => {
+  let navigate = useNavigate()
   const [user, setUser] = useState([])
   const [readings, setReadings] = useState()
 
@@ -25,6 +27,10 @@ const UserDetail = () => {
   return user && readings ? (
     <div>
       <div>
+        <div>
+          <Button onClick={() => navigate('/')}>Home</Button>
+          <Button onClick={() => navigate('/users')}>Users</Button>
+        </div>
         <h1>Patient Details</h1>
         <Card>
           <Avatar src={user.photo_url} size="large" />
@@ -35,13 +41,14 @@ const UserDetail = () => {
         </Card>
       </div>
       <h3>Blood Pressure Readings:</h3>
-      {readings === [] ? (
+      {readings ? (
         <div>
           {readings.map((reading) => (
             <Card key={reading.id}>
               <p>
                 {reading.systolic}/{reading.diastolic}
               </p>
+              <p>{reading.created_at}</p>
             </Card>
           ))}
         </div>
