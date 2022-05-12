@@ -184,7 +184,13 @@ const UserDetail = () => {
           {readings ? (
             <div>
               {readings.map((reading) => (
-                <Link to={`/readings/${reading.id}`} key={reading.id}>
+                <Link
+                  to={`/readings/${reading.id}`}
+                  key={reading.id}
+                  state={{
+                    user: { userId }
+                  }}
+                >
                   <Card>
                     <h4>
                       {reading.systolic}/{reading.diastolic}
