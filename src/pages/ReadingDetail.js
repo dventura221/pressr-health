@@ -9,6 +9,7 @@ import {
   Input
 } from 'react-rainbow-components'
 import axios from 'axios'
+import { BASE_URL } from '../services/api'
 
 const ReadingDetail = () => {
   let navigate = useNavigate()
@@ -28,9 +29,7 @@ const ReadingDetail = () => {
 
   useEffect(() => {
     const getReading = async () => {
-      let res_reading = await axios.get(
-        `http://localhost:8000/readings/${readingId}`
-      )
+      let res_reading = await axios.get(`${BASE_URL}/readings/${readingId}`)
       setReading(res_reading.data)
     }
     getReading()
@@ -40,7 +39,7 @@ const ReadingDetail = () => {
 
   const deleteReadingHandler = async () => {
     const res = await axios
-      .delete(`http://localhost:8000/readings/${readingId}`)
+      .delete(`${BASE_URL}/readings/${readingId}`)
       .then((res) => console.log('delete street successful'))
       .catch((err) => console.log(err.data))
     setCounter(counter + 1)
@@ -50,7 +49,7 @@ const ReadingDetail = () => {
   const updateReadingHandleChange = async (e) => {
     e.preventDefault()
     const res = await axios
-      .put(`http://localhost:8000/readings/${readingId}`, updateReading)
+      .put(`${BASE_URL}/readings/${readingId}`, updateReading)
       .then((res) => console.log('update street successful'))
       .catch((err) => console.log(err.data))
     setUpdateReading({

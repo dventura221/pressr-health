@@ -12,6 +12,7 @@ import {
   AccordionSection
 } from 'react-rainbow-components'
 import 'boxicons'
+import { BASE_URL } from '../services/api'
 
 const UserDetail = () => {
   let navigate = useNavigate()
@@ -32,8 +33,8 @@ const UserDetail = () => {
 
   useEffect(() => {
     const getUser = async () => {
-      let res = await axios.get(`http://localhost:8000/users/${userId}`)
-      let readingres = await axios.get(`http://localhost:8000/readings/`)
+      let res = await axios.get(`${BASE_URL}/users/${userId}`)
+      let readingres = await axios.get(`${BASE_URL}/readings/`)
       let readingsfiltered = readingres.data.filter(
         (reading) => reading.user_id === parseInt(`${userId}`)
       )
@@ -88,7 +89,7 @@ const UserDetail = () => {
   const handleSubmit = async (e) => {
     //e.preventDefault()
     const res = await axios
-      .post(`http://localhost:8000/readings/`, bpValue)
+      .post(`${BASE_URL}/readings/`, bpValue)
       .then((res) => console.log('successful'))
       .catch((err) => console.log(err.data))
     setBpValue({
@@ -105,7 +106,7 @@ const UserDetail = () => {
 
   const deleteReadingHandler = async (id) => {
     const res = await axios
-      .delete(`http://localhost:8000/readings/${id}`)
+      .delete(`${BASE_URL}/readings/${id}`)
       .then((res) => console.log('delete street successful'))
       .catch((err) => console.log(err.data))
     setCounter(counter + 1)

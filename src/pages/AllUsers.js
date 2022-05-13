@@ -2,20 +2,18 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Avatar, Card } from 'react-rainbow-components'
 import { Link } from 'react-router-dom'
+import { BASE_URL } from '../services/api'
 
 const AllUsers = () => {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
     const getUsers = async () => {
-      let res = await axios.get(`http://localhost:8000/users/`)
-      //console.log(res.data)
+      let res = await axios.get(`${BASE_URL}/users/`)
       setUsers(res.data)
     }
     getUsers()
   }, [])
-
-  //console.log(users)
 
   return (
     <div>
