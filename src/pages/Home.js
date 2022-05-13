@@ -17,6 +17,7 @@ const Home = () => {
       </div>
       <div>
         <Link to="/users">See All Users</Link>
+        <Link to="/providers">See All Providers</Link>
       </div>
     </div>
   )

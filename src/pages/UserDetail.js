@@ -179,9 +179,9 @@ const UserDetail = () => {
                       {reading.systolic}/{reading.diastolic}
                     </h4>
                     <p>{reading.created_at}</p>
-                    <Button onClick={() => deleteReadingHandler(reading.id)}>
+                    {/* <Button onClick={() => deleteReadingHandler(reading.id)}>
                       <box-icon name="x" color="#fb0000"></box-icon>
-                    </Button>
+                    </Button> */}
                   </Card>
                 </Link>
               ))}

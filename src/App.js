@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import AllUsers from './pages/AllUsers'
 import UserDetail from './pages/UserDetail'
 import ReadingDetail from './pages/ReadingDetail'
+import AllProviders from './pages/AllProviders'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/users" element={<AllUsers />} />
           <Route path="/users/:userId" element={<UserDetail />} />
           <Route path="/readings/:readingId" element={<ReadingDetail />} />
+          <Route path="/providers" element={<AllProviders />} />
         </Routes>
       </main>
     </div>

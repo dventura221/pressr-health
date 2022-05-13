@@ -1,15 +1,6 @@
 import Axios from 'axios'
 
 export const BASE_URL = 'http://localhost:8000'
-//local REACT App
-
-//export const BASE_URL = 'https://neighbourhoodbackend.herokuapp.com'
-// Heroku URL
-
-// export let BASE_URL =
-//   process.env.NODE_ENV === 'production'
-//     ? 'https://neighbourhoodbackend.herokuapp.com'
-//     : 'http://localhost:3001'
 
 const Client = Axios.create({ baseURL: BASE_URL })
 
