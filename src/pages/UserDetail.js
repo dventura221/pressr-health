@@ -104,13 +104,13 @@ const UserDetail = () => {
     setBpValue({ ...bpValue, [e.target.name]: e.target.value })
   }
 
-  const deleteReadingHandler = async (id) => {
-    const res = await axios
-      .delete(`${BASE_URL}/readings/${id}`)
-      .then((res) => console.log('delete street successful'))
-      .catch((err) => console.log(err.data))
-    setCounter(counter + 1)
-  }
+  // const deleteReadingHandler = async (id) => {
+  //   const res = await axios
+  //     .delete(`${BASE_URL}/readings/${id}`)
+  //     .then((res) => console.log('delete street successful'))
+  //     .catch((err) => console.log(err.data))
+  //   setCounter(counter + 1)
+  // }
 
   return user && readings ? (
     <div>

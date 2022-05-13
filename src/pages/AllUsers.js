@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { Avatar, Card } from 'react-rainbow-components'
-import { Link } from 'react-router-dom'
+import { Avatar, Card, Button } from 'react-rainbow-components'
+import { Link, useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../services/api'
 
 const AllUsers = () => {
+  let navigate = useNavigate()
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -17,6 +18,7 @@ const AllUsers = () => {
 
   return (
     <div>
+      <Button onClick={() => navigate('/')}>Home</Button>
       <h1>All Patients (Users)</h1>
       <div>
         {users.map((user) => (
