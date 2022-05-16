@@ -28,9 +28,8 @@
   flex-grow: 1;
 }
 
-.vertSection {
-  display: flex;
-  flex-direction: column;
+.navObj {
+  margin: 10px;
 }
 
 .BPGraph {

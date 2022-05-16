@@ -13,13 +13,19 @@ const SideNav = () => {
   return (
     <div className="sideNav">
       <VerticalNavigation>
-        <div className="vertSection">
-          <VerticalSection>
+        <div>
+          <VerticalSection className="vertSection">
             <h1 className="navTitle">PressR</h1>
-            <Button onClick={() => navigate('/')}>Start</Button>
-            <LogoutButton />
-            <Button onClick={() => navigate('/profile')}>Profile</Button>
-            <Button onClick={() => navigate('/home')}>Home</Button>
+            <Button onClick={() => navigate('/')} className="navObj">
+              Start
+            </Button>
+            <LogoutButton className="navObj" />
+            <Button onClick={() => navigate('/profile')} className="navObj">
+              Profile
+            </Button>
+            <Button onClick={() => navigate('/home')} className="navObj">
+              Home
+            </Button>
           </VerticalSection>
         </div>
       </VerticalNavigation>
