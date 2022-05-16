@@ -131,6 +131,9 @@ const UserDetail = () => {
     })
     return month + '/' + dt + '/' + year + ' at ' + time
   }
+  console.log(readings)
+  let rev_readings = [...readings].reverse()
+  console.log('Reverse', rev_readings)
 
   return user && readings ? (
     <div>
@@ -189,7 +192,7 @@ const UserDetail = () => {
           <h3>Blood Pressure Readings:</h3>
           {readings ? (
             <div className="readingsGrid">
-              {readings.map((reading) => (
+              {rev_readings.map((reading) => (
                 <Link
                   to={`/readings/${reading.id}`}
                   key={reading.id}
