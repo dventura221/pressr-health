@@ -183,7 +183,7 @@ const UserDetail = () => {
         <div>
           <h3>Blood Pressure Readings:</h3>
           {readings ? (
-            <div>
+            <div className="readingsGrid">
               {readings.map((reading) => (
                 <Link
                   to={`/readings/${reading.id}`}

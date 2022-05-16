@@ -31,7 +31,7 @@ const AllProviders = () => {
       setProviders(res.data)
     }
     getProv()
-  }, [])
+  }, [counter])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -127,7 +127,7 @@ const AllProviders = () => {
           </AccordionSection>
         </Accordion>
       </div>
-      <div>
+      <div className="allProvsGrid">
         {providers.map((prov) => (
           <Link
             to={`/providers/${prov.id}`}

@@ -76,6 +76,16 @@
   padding: 25px 0;
 }
 
+.allUsersGrid, .allProvsGrid {
+  overflow: auto;
+  max-height: 80vh;
+}
+
+.readingsGrid {
+  overflow: auto;
+  max-height: 50vh;
+}
+
 /* main {
   flex-grow: 3;
 } */
