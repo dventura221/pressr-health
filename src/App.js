@@ -6,16 +6,20 @@ import UserDetail from './pages/UserDetail'
 import ReadingDetail from './pages/ReadingDetail'
 import AllProviders from './pages/AllProviders'
 import ProviderDetail from './pages/ProviderDetail'
+import Login from './pages/Login'
+import Profile from './pages/Profile'
+import SideNav from './components/SideNav'
 
 function App() {
+  //let navigate = useNavigate()
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Header Filler</p>
-      </header>
+      <SideNav />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/users" element={<AllUsers />} />
           <Route path="/users/:userId" element={<UserDetail />} />
           <Route path="/readings/:readingId" element={<ReadingDetail />} />

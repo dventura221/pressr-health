@@ -40,7 +40,7 @@ const ProviderDetail = () => {
 
   return provider && users ? (
     <div>
-      <Button onClick={() => navigate('/')}>Home</Button>
+      <Button onClick={() => navigate('/home')}>Home</Button>
       <Button onClick={() => navigate('/providers')}>All Providers</Button>
       <h1>Provider Details</h1>
       <div>

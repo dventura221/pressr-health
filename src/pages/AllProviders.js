@@ -16,12 +16,10 @@ const AllProviders = () => {
     getProv()
   }, [])
 
-  //console.log(providers)
-
   return (
     <div>
       <div>
-        <Button onClick={() => navigate('/')}>Home</Button>
+        <Button onClick={() => navigate('/home')}>Home</Button>
       </div>
       <h1>All Providers</h1>
       <div>

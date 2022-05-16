@@ -16,8 +16,6 @@ const ReadingDetail = () => {
   let { readingId } = useParams()
   const location = useLocation()
   const user = location.state.user.user
-  //console.log('Location', location)
-  //console.log('User', user)
 
   const [reading, setReading] = useState()
   const [counter, setCounter] = useState(1000)
@@ -34,8 +32,6 @@ const ReadingDetail = () => {
     }
     getReading()
   }, [counter])
-
-  //console.log('Reading', reading)
 
   const deleteReadingHandler = async () => {
     const res = await axios
@@ -68,7 +64,7 @@ const ReadingDetail = () => {
     <div>
       <h1>Reading Details</h1>
       <div>
-        <Button onClick={() => navigate('/')}>Home</Button>
+        <Button onClick={() => navigate('/home')}>Home</Button>
         <Button onClick={() => navigate(`/users/${user.id}`)}>
           Back to User
         </Button>

@@ -18,11 +18,17 @@ const AllUsers = () => {
 
   return (
     <div>
-      <Button onClick={() => navigate('/')}>Home</Button>
-      <h1>All Patients (Users)</h1>
+      <Button onClick={() => navigate('/home')}>Home</Button>
+      <h1>All Patients</h1>
       <div>
         {users.map((user) => (
-          <Link to={`/users/${user.id}`} key={user.id}>
+          <Link
+            to={`/users/${user.id}`}
+            key={user.id}
+            state={{
+              user: { user }
+            }}
+          >
             <Card>
               <Avatar src={user.photo_url} size="large" />
               <h2>

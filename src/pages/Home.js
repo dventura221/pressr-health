@@ -1,23 +1,22 @@
 import { Card } from 'react-rainbow-components'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import 'boxicons'
 
 const Home = () => {
-  const StyledCard = styled(Card)`
-    width: 240px;
-    height: 363px;
-  `
-
   return (
     <div>
-      <h1>HOME FILLER</h1>
+      <h1>Welcome Home</h1>
       <div>
-        <StyledCard title="Patient" />
-        <StyledCard title="Provider" />
-      </div>
-      <div>
-        <Link to="/users">See All Users</Link>
-        <Link to="/providers">See All Providers</Link>
+        <Link to="/users">
+          <Card title="All Patients">
+            <box-icon type="solid" name="user"></box-icon>
+          </Card>
+        </Link>
+        <Link to="/providers">
+          <Card title="All Providers">
+            <box-icon name="plus-medical"></box-icon>
+          </Card>
+        </Link>
       </div>
     </div>
   )

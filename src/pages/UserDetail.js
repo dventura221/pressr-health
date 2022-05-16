@@ -47,7 +47,9 @@ const UserDetail = () => {
         readingsfiltered.map((dias_reading) => dias_reading.diastolic)
       )
       setLabels(
-        readingsfiltered.map((reading_dates) => reading_dates.created_at)
+        readingsfiltered.map((reading_dates) =>
+          getReadingDate(reading_dates.created_at)
+        )
       )
     }
     getUser()
@@ -87,7 +89,7 @@ const UserDetail = () => {
   }
 
   const handleSubmit = async (e) => {
-    //e.preventDefault()
+    e.preventDefault()
     const res = await axios
       .post(`${BASE_URL}/readings/`, bpValue)
       .then((res) => console.log('successful'))
@@ -104,19 +106,37 @@ const UserDetail = () => {
     setBpValue({ ...bpValue, [e.target.name]: e.target.value })
   }
 
-  // const deleteReadingHandler = async (id) => {
-  //   const res = await axios
-  //     .delete(`${BASE_URL}/readings/${id}`)
-  //     .then((res) => console.log('delete street successful'))
-  //     .catch((err) => console.log(err.data))
-  //   setCounter(counter + 1)
-  // }
+  const getDOB = (arg) => {
+    const date = arg
+    const [year, month, day] = date.split('-')
+    let result = [month, day, year].join('/')
+    return result
+  }
+
+  const getReadingDate = (arg) => {
+    let date = new Date(arg)
+    let year = date.getFullYear()
+    let month = date.getMonth() + 1
+    let dt = date.getDate()
+    if (dt < 10) {
+      dt = '0' + dt
+    }
+    if (month < 10) {
+      month = '0' + month
+    }
+    const myDate = arg
+    const time = new Date(myDate).toLocaleTimeString('en', {
+      timeStyle: 'short',
+      hour12: false
+    })
+    return month + '/' + dt + '/' + year + ' at ' + time
+  }
 
   return user && readings ? (
     <div>
       <div>
         <div>
-          <Button onClick={() => navigate('/')}>Home</Button>
+          <Button onClick={() => navigate('/home')}>Home</Button>
           <Button onClick={() => navigate('/users')}>Users</Button>
         </div>
         <h1>Patient Details</h1>
@@ -125,7 +145,7 @@ const UserDetail = () => {
           <h2>
             {user.last_name}, {user.first_name}
           </h2>
-          <h3>Date of Birth: {user.dob}</h3>
+          {user.dob ? <h3>Date of Birth: {getDOB(user.dob)}</h3> : null}
         </Card>
       </div>
       <div>
@@ -178,10 +198,7 @@ const UserDetail = () => {
                     <h4>
                       {reading.systolic}/{reading.diastolic}
                     </h4>
-                    <p>{reading.created_at}</p>
-                    {/* <Button onClick={() => deleteReadingHandler(reading.id)}>
-                      <box-icon name="x" color="#fb0000"></box-icon>
-                    </Button> */}
+                    <p>{getReadingDate(reading.created_at)}</p>
                   </Card>
                 </Link>
               ))}
@@ -192,7 +209,7 @@ const UserDetail = () => {
         </div>
       ) : null}
       {toggle === true ? (
-        <div>
+        <div className="BPGraph">
           <Chart labels={labels} type="line" showLegend={true}>
             {renderDatasets()}
           </Chart>
