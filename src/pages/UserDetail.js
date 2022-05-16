@@ -136,11 +136,10 @@ const UserDetail = () => {
     <div>
       <div>
         <div>
-          <Button onClick={() => navigate('/home')}>Home</Button>
-          <Button onClick={() => navigate('/users')}>Users</Button>
+          <Button onClick={() => navigate('/users')}>Back to All Users</Button>
         </div>
         <h1>Patient Details</h1>
-        <Card>
+        <Card className="ptCard">
           <Avatar src={user.photo_url} size="large" />
           <h2>
             {user.last_name}, {user.first_name}
@@ -150,7 +149,7 @@ const UserDetail = () => {
       </div>
       <div>
         <Accordion>
-          <AccordionSection label="Add new blood pressure Reading">
+          <AccordionSection label="Add New Blood Pressure Reading">
             <form onSubmit={handleSubmit}>
               <Input
                 label="Systolic"
@@ -193,8 +192,9 @@ const UserDetail = () => {
                     user: { user }
                   }}
                   // https://www.daggala.com/passing-props-through-link-in-react-router/
+                  style={{ textDecoration: 'none' }}
                 >
-                  <Card>
+                  <Card className="readingCard">
                     <h4>
                       {reading.systolic}/{reading.diastolic}
                     </h4>

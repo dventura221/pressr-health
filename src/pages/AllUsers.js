@@ -16,9 +16,15 @@ const AllUsers = () => {
     getUsers()
   }, [])
 
+  const getDOB = (arg) => {
+    const date = arg
+    const [year, month, day] = date.split('-')
+    let result = [month, day, year].join('/')
+    return result
+  }
+
   return (
     <div>
-      <Button onClick={() => navigate('/home')}>Home</Button>
       <h1>All Patients</h1>
       <div>
         {users.map((user) => (
@@ -28,13 +34,14 @@ const AllUsers = () => {
             state={{
               user: { user }
             }}
+            style={{ textDecoration: 'none' }}
           >
-            <Card>
+            <Card className="ptCard">
               <Avatar src={user.photo_url} size="large" />
               <h2>
                 {user.last_name}, {user.first_name}
               </h2>
-              <h3>Date of Birth: {user.dob}</h3>
+              <h3>Date of Birth: {getDOB(user.dob)}</h3>
             </Card>
           </Link>
         ))}

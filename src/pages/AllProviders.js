@@ -18,14 +18,15 @@ const AllProviders = () => {
 
   return (
     <div>
-      <div>
-        <Button onClick={() => navigate('/home')}>Home</Button>
-      </div>
       <h1>All Providers</h1>
       <div>
         {providers.map((prov) => (
-          <Link to={`/providers/${prov.id}`} key={prov.id}>
-            <Card>
+          <Link
+            to={`/providers/${prov.id}`}
+            key={prov.id}
+            style={{ textDecoration: 'none' }}
+          >
+            <Card className="provCard">
               <Avatar src={prov.photo_url} size="large" />
               <h2>
                 {prov.last_name}, {prov.first_name}, {prov.provider_type}

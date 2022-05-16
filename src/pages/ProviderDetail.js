@@ -23,15 +23,12 @@ const ProviderDetail = () => {
     const getProv = async () => {
       let res = await axios.get(`${BASE_URL}/providers/${providerId}`)
       setProvider(res.data)
-      console.log('Provider', res.data)
     }
     const getUsers = async () => {
       let res = await axios.get(`${BASE_URL}/users/`)
-      console.log('Users', res.data)
       let users_filtered = res.data.filter(
         (user) => user.provider_id === parseInt(`${providerId}`)
       )
-      console.log('Users Filtered', users_filtered)
       setUsers(users_filtered)
     }
     getProv()
@@ -40,11 +37,12 @@ const ProviderDetail = () => {
 
   return provider && users ? (
     <div>
-      <Button onClick={() => navigate('/home')}>Home</Button>
-      <Button onClick={() => navigate('/providers')}>All Providers</Button>
+      <Button onClick={() => navigate('/providers')}>
+        Back to All Providers
+      </Button>
       <h1>Provider Details</h1>
       <div>
-        <Card>
+        <Card className="provCard">
           <Avatar src={provider.photo_url} size="large" />
           <h2>
             {provider.last_name}, {provider.first_name},{' '}
@@ -57,8 +55,12 @@ const ProviderDetail = () => {
       </div>
       <div>
         {users.map((user) => (
-          <Link to={`/users/${user.id}`} key={user.id}>
-            <Card>
+          <Link
+            to={`/users/${user.id}`}
+            key={user.id}
+            style={{ textDecoration: 'none' }}
+          >
+            <Card className="ptCard">
               <Avatar src={user.photo_url} size="large" />
               <h2>
                 {user.last_name}, {user.first_name}
