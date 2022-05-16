@@ -4,7 +4,6 @@ import {
   VerticalSection,
   Button
 } from 'react-rainbow-components'
-import LoginButton from './LogInButton'
 import LogoutButton from './LogoutButton'
 import { useNavigate } from 'react-router-dom'
 
@@ -17,7 +16,7 @@ const SideNav = () => {
         <div className="vertSection">
           <VerticalSection>
             <h1 className="navTitle">PressR</h1>
-            <LoginButton />
+            <Button onClick={() => navigate('/')}>Start</Button>
             <LogoutButton />
             <Button onClick={() => navigate('/profile')}>Profile</Button>
             <Button onClick={() => navigate('/home')}>Home</Button>

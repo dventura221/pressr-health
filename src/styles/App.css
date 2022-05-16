@@ -86,9 +86,9 @@
   max-height: 50vh;
 }
 
-/* main {
-  flex-grow: 3;
-} */
+.backToAllProvButton, .backToAllUsersButton {
+  margin-top: 3vh;
+}
 
 .App-header {
   background-color: #282c34;
@@ -101,3 +101,7 @@
   color: white;
 }
 
+.disclaimer {
+  max-width: 60vw;
+  text-align: center;
+}

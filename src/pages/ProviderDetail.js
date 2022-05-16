@@ -30,7 +30,10 @@ const ProviderDetail = () => {
 
   return provider && users ? (
     <div>
-      <Button onClick={() => navigate('/providers')}>
+      <Button
+        onClick={() => navigate('/providers')}
+        className="backToAllProvButton"
+      >
         Back to All Providers
       </Button>
       <h1>Provider Details</h1>

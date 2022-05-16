@@ -136,7 +136,12 @@ const UserDetail = () => {
     <div>
       <div>
         <div>
-          <Button onClick={() => navigate('/users')}>Back to All Users</Button>
+          <Button
+            onClick={() => navigate('/users')}
+            className="backToAllUsersButton"
+          >
+            Back to All Users
+          </Button>
         </div>
         <h1>Patient Details</h1>
         <Card className="ptCard">

@@ -33,7 +33,6 @@ const AllUsers = () => {
       setUsers(res.data)
       let resProv = await axios.get(`${BASE_URL}/providers/`)
       setProviders(resProv.data)
-      console.log(resProv.data)
     }
     getUsers()
   }, [counter])
