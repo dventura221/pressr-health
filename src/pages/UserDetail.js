@@ -131,9 +131,8 @@ const UserDetail = () => {
     })
     return month + '/' + dt + '/' + year + ' at ' + time
   }
-  console.log(readings)
+
   let rev_readings = [...readings].reverse()
-  console.log('Reverse', rev_readings)
 
   return user && readings ? (
     <div>
