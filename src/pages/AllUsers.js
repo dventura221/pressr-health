@@ -1,11 +1,19 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { Avatar, Card, Button } from 'react-rainbow-components'
-import { Link, useNavigate } from 'react-router-dom'
+import {
+  Avatar,
+  Card,
+  Input,
+  Button,
+  Picklist,
+  Option,
+  Accordion,
+  AccordionSection
+} from 'react-rainbow-components'
+import { Link } from 'react-router-dom'
 import { BASE_URL } from '../services/api'
 
 const AllUsers = () => {
-  let navigate = useNavigate()
   const [users, setUsers] = useState([])
 
   useEffect(() => {

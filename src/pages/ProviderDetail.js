@@ -1,14 +1,7 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import {
-  Card,
-  Avatar,
-  Button,
-  Input,
-  Accordion,
-  AccordionSection
-} from 'react-rainbow-components'
+import { Card, Avatar, Button } from 'react-rainbow-components'
 import 'boxicons'
 import { BASE_URL } from '../services/api'
 
